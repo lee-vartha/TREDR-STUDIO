@@ -102,4 +102,26 @@ output_box.tag_config("info", foreground="#60a5fa")
 output_box.tag_config("err", foreground="#f87171")
 output_box.tag_config("muted", foreground="#94a3b8")
 
+# -------- HISTORY TAB --------
+title = tk.Label(history_tab, text="Scan History",
+                 font=("Arial", 16, "bold"), bg="#dcdad5")
+title.pack(pady=(14,6))
+
+table_frame = tk.Frame(history_tab, bg="#dcdad5")
+table_frame.pack(fill="both", expand=True, padx=14, pady=(4, 6))
+# columns
+cols = ("File", "Rule", "Date", "Status")
+history_table = ttk.Treeview(table_frame, columns=cols, show="headings", height=8)
+for c, w in zip(cols, (160, 140, 140, 140)):
+    history_table.heading(c, text=c)
+    history_table.column(c, width=w, stretch=(c == "File"))
+history_table.pack(fill="x")
+
+# vsb is vertical scrollbar
+vsb = ttk.Scrollbar(table_frame, orient="vertical", bg="#0f1320", command=history_table.yview)
+history_table.configure(yscroll=vsb.set)
+
+history_table.pack(side="left", fill="both", expand=True)
+vsb.pack(side="right", fill="y")
+
 root.mainloop() # starts main loop
