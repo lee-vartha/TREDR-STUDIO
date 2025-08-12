@@ -11,7 +11,6 @@ yarac64.exe
 *.obj
 *.pdb
 
-rules/
 samples/
 
 # Logs
